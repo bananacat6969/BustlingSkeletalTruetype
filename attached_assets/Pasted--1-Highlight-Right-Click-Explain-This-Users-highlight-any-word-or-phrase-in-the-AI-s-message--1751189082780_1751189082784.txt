@@ -1,0 +1,160 @@
+ 1. Highlight + Right-Click → “Explain This”
+Users highlight any word or phrase in the AI’s message or their own
+
+Dropdown options:
+
+“Explain grammar”
+
+“Break down syntax”
+
+“Literal vs natural translation”
+
+“Add to vocab list”
+
+“Show similar phrases”
+
+✅ 2. Dynamic Grammar Coloring
+Color-coded sentences:
+
+Verbs = red, nouns = blue, adjectives = green, particles = purple
+
+Toggle on/off via settings
+
+Works on AI messages and user messages
+
+✅ 3. Instant Backtranslation
+After user replies in target language:
+
+AI shows the reverse translation:
+“Here’s how a native speaker might say this in English”
+
+Helps reinforce intent vs accuracy
+
+✅ 4. “Fix My Sentence” Mode
+User writes a sentence
+
+AI:
+
+Shows corrected version
+
+Explains why it was wrong
+
+Shows alternative expressions with nuance breakdowns
+
+✅ 5. Sentence Difficulty Estimator
+Hover over AI reply → See CEFR level (A2, B1, C1, etc.)
+
+Encourages level awareness
+
+Settings: “Keep responses under B2” or “Push me to C1+”
+
+📚 Vocabulary Mastery System
+✅ 6. Vocab Collector (From Anywhere)
+Click any word → modal pops up:
+
+Add translation
+
+Add personal note/context
+
+Tag (e.g., Business, Food, Romance)
+
+Mark “Known / Learning / Need Practice”
+
+Synced to Supabase
+
+Automatically shows example sentences with that word
+
+✅ 7. Daily Smart Review (like Anki but better)
+Pulls 10–20 saved words/phrases
+
+Mixed modes:
+
+Flashcard
+
+Fill-in-the-blank
+
+Sentence reconstruction
+
+Listening and writing
+
+✅ 8. Word Evolution Tracker
+Each saved word has:
+
+Date added
+
+Contexts where used
+
+Strength score based on usage
+
+“Last time you used this: 4 days ago”
+
+🎮 Engagement & Motivation
+✅ 9. “Chat Quests”
+Short missions like:
+
+“Buy fruit at a market (in Spanish)”
+
+“Tell a friend you’re feeling sick (in Japanese)”
+
+AI roleplays accordingly, evaluates how natural you sounded
+
+✅ 10. Streaks + Achievements
+Language streak
+
+“You used 5 new words today!”
+
+“You wrote a grammatically perfect B2 sentence!”
+
+🔍 Researcher Tools (for nerds and language lovers)
+✅ 11. Word Origin Inspector
+See etymology of any word with 1 click
+
+Shows how it evolved in that language
+
+Borrowed words from other languages marked with tooltip
+
+✅ 12. Live Dictionary Switching
+DeepL, Glosbe, Jisho (for Japanese), Wiktionary
+
+When hovering, option to open in one click
+
+✅ 13. Comparison Tool: “How would this sound in…”
+Highlight sentence → “Show how this would sound in X language”
+
+Useful for multilingual users
+
+🧩 Power User Modes
+✅ 14. Toggle AI Personas
+Teacher, Friend, Parent, Interviewer, Date, Enemy (for practice in emotional tone)
+
+Affects tone and grammar used
+
+✅ 15. Save Entire Conversations
+Export full chats as:
+
+Study doc (with grammar notes and translations)
+
+PDF / Markdown
+
+✅ 16. Immersion Mode
+Chat and UI switches fully to target language after beginner stage
+
+Optional hover hints remain for emergency understanding
+
+🧰 Infrastructure & UI
+✅ 17. Drag-and-Drop Vocab Review
+Reorder flashcards
+
+Tag/re-tag in bulk
+
+Merge duplicates
+
+✅ 18. Study Timeline
+Visual timeline of what you studied, what level of grammar, what words
+
+Timeline shows: “You mastered 22 A2 words this week.”
+
+✅ 19. Light/Dark Mode + Claude Mode
+Claude mode = soft beige/purple gradients, minimalist typography
+
+Optional anime or emoji UI themes for fun
