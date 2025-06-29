@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Languella - AI Language Learning</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="screen">
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <h2>Loading Languella...</h2>
+        </div>
+    </div>
+
+    <!-- Onboarding Screen -->
+    <div id="onboarding-screen" class="screen hidden">
+        <div class="onboarding-container">
+            <div class="onboarding-header">
+                <h1>Welcome to Languella</h1>
+                <p>Let's personalize your language learning experience</p>
+            </div>
+
+            <!-- Language Selection -->
+            <div id="language-selection" class="onboarding-step">
+                <h2>Which language would you like to learn?</h2>
+                <div class="selection-grid">
+                    <div class="language-card" data-language="Spanish">
+                        <div class="card-icon">🇪🇸</div>
+                        <h3>Spanish</h3>
+                        <p>500M+ speakers worldwide</p>
+                    </div>
+                    <div class="language-card" data-language="French">
+                        <div class="card-icon">🇫🇷</div>
+                        <h3>French</h3>
+                        <p>280M+ speakers worldwide</p>
+                    </div>
+                    <div class="language-card" data-language="German">
+                        <div class="card-icon">🇩🇪</div>
+                        <h3>German</h3>
+                        <p>100M+ speakers worldwide</p>
+                    </div>
+                    <div class="language-card" data-language="Italian">
+                        <div class="card-icon">🇮🇹</div>
+                        <h3>Italian</h3>
+                        <p>65M+ speakers worldwide</p>
+                    </div>
+                    <div class="language-card" data-language="Portuguese">
+                        <div class="card-icon">🇵🇹</div>
+                        <h3>Portuguese</h3>
+                        <p>260M+ speakers worldwide</p>
+                    </div>
+                    <div class="language-card" data-language="Japanese">
+                        <div class="card-icon">🇯🇵</div>
+                        <h3>Japanese</h3>
+                        <p>125M+ speakers worldwide</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level Selection -->
+            <div id="level-selection" class="onboarding-step hidden">
+                <h2>What's your current level?</h2>
+                <div class="selection-grid">
+                    <div class="level-card" data-level="A1">
+                        <h3>Beginner (A1)</h3>
+                        <p>I'm just starting out</p>
+                        <ul>
+                            <li>Basic greetings</li>
+                            <li>Simple phrases</li>
+                            <li>Common words</li>
+                        </ul>
+                    </div>
+                    <div class="level-card" data-level="A2">
+                        <h3>Elementary (A2)</h3>
+                        <p>I know some basics</p>
+                        <ul>
+                            <li>Simple conversations</li>
+                            <li>Present tense</li>
+                            <li>Everyday topics</li>
+                        </ul>
+                    </div>
+                    <div class="level-card" data-level="B1">
+                        <h3>Intermediate (B1)</h3>
+                        <p>I can have basic conversations</p>
+                        <ul>
+                            <li>Past and future tenses</li>
+                            <li>Express opinions</li>
+                            <li>Travel situations</li>
+                        </ul>
+                    </div>
+                    <div class="level-card" data-level="B2">
+                        <h3>Upper-Intermediate (B2)</h3>
+                        <p>I'm fairly comfortable</p>
+                        <ul>
+                            <li>Complex topics</li>
+                            <li>Abstract concepts</li>
+                            <li>Professional contexts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Goals Selection -->
+            <div id="goals-selection" class="onboarding-step hidden">
+                <h2>What are your learning goals?</h2>
+                <div class="selection-grid">
+                    <div class="goal-card" data-goal="travel">
+                        <div class="card-icon">✈️</div>
+                        <h3>Travel</h3>
+                        <p>Navigate conversations while traveling</p>
+                    </div>
+                    <div class="goal-card" data-goal="business">
+                        <div class="card-icon">💼</div>
+                        <h3>Business</h3>
+                        <p>Professional communication skills</p>
+                    </div>
+                    <div class="goal-card" data-goal="academic">
+                        <div class="card-icon">🎓</div>
+                        <h3>Academic</h3>
+                        <p>Study abroad or academic purposes</p>
+                    </div>
+                    <div class="goal-card" data-goal="general">
+                        <div class="card-icon">🌟</div>
+                        <h3>General</h3>
+                        <p>Overall language improvement</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="onboarding-navigation">
+                <button id="onboarding-back" class="btn btn-secondary hidden">Back</button>
+                <button id="onboarding-next" class="btn btn-primary" disabled>Next</button>
+                <button id="onboarding-finish" class="btn btn-primary hidden" disabled>Get Started</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Screen -->
+    <div id="auth-screen" class="screen hidden">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h1>Welcome to Languella</h1>
+                <p>Sign in to continue your language learning journey</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+
+            <form id="auth-form" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary auth-button">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="main-app" class="screen hidden">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <h1>Languella</h1>
+            </div>
+            <div class="header-right">
+                <div class="profile-section">
+                    <button id="profile-btn" class="profile-btn">
+                        <span id="user-email">user@example.com</span>
+                        <span class="profile-arrow">▼</span>
+                    </button>
+                    <div id="profile-menu" class="profile-menu hidden">
+                        <a href="#" class="profile-menu-item">Settings</a>
+                        <a href="#" class="profile-menu-item">Help</a>
+                        <button id="logout-btn" class="profile-menu-item logout">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="app-nav">
+            <div class="nav-item active" data-view="chat">
+                <span class="nav-icon">💬</span>
+                <span>Chat</span>
+            </div>
+            <div class="nav-item" data-view="vocabulary">
+                <span class="nav-icon">📚</span>
+                <span>Vocabulary</span>
+            </div>
+            <div class="nav-item" data-view="progress">
+                <span class="nav-icon">📊</span>
+                <span>Progress</span>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Chat View -->
+            <div id="chat-view" class="view active">
+                <div class="chat-container">
+                    <div id="chat-messages" class="chat-messages">
+                        <div class="message ai">
+                            <div class="message-content">
+                                ¡Hola! I'm your AI language tutor. Let's start practicing! What would you like to talk about today?
+                            </div>
+                            <div class="message-translation">
+                                <button class="translation-toggle">Show translation</button>
+                                <div class="translation-content hidden">Hello! I'm your AI language tutor. Let's start practicing! What would you like to talk about today?</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <textarea id="chat-input" placeholder="Type your message in Spanish..." rows="2"></textarea>
+                        <button id="send-btn" class="send-btn">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vocabulary View -->
+            <div id="vocabulary-view" class="view">
+                <div class="view-header">
+                    <h2>Your Vocabulary</h2>
+                    <div class="view-actions">
+                        <button class="btn btn-secondary">Import</button>
+                        <button class="btn btn-primary">Add Word</button>
+                    </div>
+                </div>
+                <div class="vocabulary-filters">
+                    <select class="filter-select">
+                        <option>All Words</option>
+                        <option>Learning</option>
+                        <option>Mastered</option>
+                        <option>Difficult</option>
+                    </select>
+                    <input type="search" placeholder="Search vocabulary..." class="search-input">
+                </div>
+                <div id="vocabulary-list" class="vocabulary-list">
+                    <!-- Vocabulary items will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Progress View -->
+            <div id="progress-view" class="view">
+                <div class="view-header">
+                    <h2>Your Progress</h2>
+                </div>
+                <div class="progress-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-words-learned">0</div>
+                        <div class="stat-label">Words Learned</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="conversations-count">0</div>
+                        <div class="stat-label">Conversations Today</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="current-level">A1</div>
+                        <div class="stat-label">Current Level</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="streak-count">0</div>
+                        <div class="stat-label">Day Streak</div>
+                    </div>
+                </div>
+                <div class="progress-charts">
+                    <div class="chart-container">
+                        <h3>Weekly Activity</h3>
+                        <div class="chart-placeholder">Chart coming soon...</div>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Vocabulary Growth</h3>
+                        <div class="chart-placeholder">Chart coming soon...</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

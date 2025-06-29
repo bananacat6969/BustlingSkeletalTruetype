@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: languella
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SUPABASE_URL
+        fromService:
+          type: web
+          name: languella
+          envVarKey: SUPABASE_URL
+      - key: SUPABASE_ANON_KEY
+        fromService:
+          type: web
+          name: languella
+          envVarKey: SUPABASE_ANON_KEY
+      - key: OPENROUTER_API_KEY
+        fromService:
+          type: web
+          name: languella
+          envVarKey: OPENROUTER_API_KEY
