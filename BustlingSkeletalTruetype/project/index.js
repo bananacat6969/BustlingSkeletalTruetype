@@ -382,10 +382,11 @@ process.on('SIGTERM', () => {
 // Start server with dynamic port finding for development, use PORT env var for production
 (async () => {
   try {
-    const PORT = process.env.PORT || (process.env.NODE_ENV === 'production' ? 10000 : await findAvailablePort(5000));
+    const PORT = process.env.PORT || (process.env.NODE_ENV === 'production' ? 3000 : await findAvailablePort(5000));
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`Server running on port ${PORT}`);
       console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`Server accessible at: http://0.0.0.0:${PORT}`);
     });
   } catch (error) {
     console.error('Failed to start server:', error);

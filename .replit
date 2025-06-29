@@ -2,3 +2,18 @@ modules = ["nodejs-20", "web"]
 
 [nix]
 channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "cd BustlingSkeletalTruetype/project && node index.js"]
+
+[workflows]
+runButton = "Run App"
+
+[[workflows.workflow]]
+name = "Run App"
+author = 44198341
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd BustlingSkeletalTruetype/project && npm install && node index.js"

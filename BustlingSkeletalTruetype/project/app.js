@@ -28,6 +28,13 @@ const onboardingScreen = document.getElementById('onboarding-screen');
 const authScreen = document.getElementById('auth-screen');
 const mainApp = document.getElementById('main-app');
 
+// Import axios if not available globally
+if (typeof axios === 'undefined') {
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/axios/dist/axios.min.js';
+    document.head.appendChild(script);
+}
+
 // Initialize app
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('App initializing...');
